@@ -11,6 +11,10 @@
         "symfony/http-kernel": "^2.3 || ^3.0 || ^4.0 || ^5.0"
     },
     "autoload": {
+        "files": [
+            "functions.php",
+            "wp_plugin.php"
+        ],
         "psr-4": {
             "Kcs\\FlocDisabler\\": "src/"
         }
