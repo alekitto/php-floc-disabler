@@ -1,0 +1,18 @@
+{
+    "name": "kcs/floc-disabler",
+    "description": "Disable Google FLoC",
+    "require": {
+        "php": "^5.3 || ^7.0 || ^8.0"
+    },
+    "require-dev": {
+        "symfony/dependency-injection": "^2.3 || ^3.0 || ^4.0 || ^5.0",
+        "symfony/event-dispatcher": "^2.3 || ^3.0 || ^4.0 || ^5.0",
+        "symfony/http-foundation": "^2.3 || ^3.0 || ^4.0 || ^5.0",
+        "symfony/http-kernel": "^2.3 || ^3.0 || ^4.0 || ^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Kcs\\FlocDisabler\\": "src/"
+        }
+    }
+}
