@@ -13,12 +13,19 @@ class Wordpress
      */
     public static function disable(array $headers)
     {
-        $headerKeys = array_map('strtolower', array_keys($headers));
-        if (in_array('permissions-policy', $headerKeys, true)) {
-            return $headers;
-        }
+        $headerNames = array_combine(
+            array_map('strtolower', array_keys($headers)),
+            array_values($headers)
+        );
 
-        $headers['Permissions-Policy'] = 'interest-cohort=()';
+        if (isset($headerNames['permissions-policy'])) {
+            $headerKey = $headerNames['permissions-policy'];
+            if (! empty($headerNames[$headerKey]) && false === strpos($headers[$headerKey], 'interest-cohort')) {
+                $headers[$headerKey] .= ', interest-cohort=()';
+            }
+        } else {
+            $headers['Permissions-Policy'] = 'interest-cohort=()';
+        }
 
         return $headers;
     }

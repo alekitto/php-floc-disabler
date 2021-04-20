@@ -8,10 +8,14 @@ class Disabler
 {
     public static function disable(Response $response)
     {
-        if ($response->headers->has('Permissions-Policy')) {
+        if (! $response->headers->has('Permissions-Policy')) {
+            $response->headers->set('Permissions-Policy', 'interest-cohort=()');
             return;
         }
 
-        $response->headers->set('Permissions-Policy', 'interest-cohort=()');
+        $current = $response->headers->get('Permissions-Policy', '');
+        if (false === strpos($current, 'interest-cohort')) {
+            $response->headers->set('Permissions-Policy', $current . ', interest-cohort=()');
+        }
     }
 }
